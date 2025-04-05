@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   Typography,
   Card,
@@ -34,6 +34,10 @@ import {
   ChartBarIcon,
 } from "@heroicons/react/24/solid";
 
+import { Button } from '@material-tailwind/react';
+import { DialogSmall } from '@/widgets/modals/confirm-modal';  // Asegúrate de que la ruta sea correcta
+// import ConfirmModal from "../../widgets/modals/confirm-modal";
+
 
 export function Home() {
   const { users, loading, fetchUsers, deleteUser } = useContext(userContext);
@@ -61,6 +65,37 @@ export function Home() {
   //     </ul>
   //   </div>
   // );
+
+
+  // ###############################
+
+  // const [isDialogOpen, setIsDialogOpen] = useState(false);
+
+  // const handleOpenDialog = (state) => {
+  //   setIsDialogOpen(state);
+  // };
+
+  // return (
+  //   <div>
+  //     <h1>Welcome to the Home page</h1>
+  //     <button onClick={() => handleOpenDialog(true)}>
+  //       Open Modal
+  //     </button>
+
+  //     {/* Render the DialogSmall component */}
+  //     <DialogSmall
+  //       isOpen={isDialogOpen}
+  //       handleOpen={handleOpenDialog}
+  //     />
+  //   </div>
+  // );
+
+  // ###############################
+
+
+
+
+
 
   return (
     <div className="mt-12">

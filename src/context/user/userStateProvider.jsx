@@ -16,15 +16,15 @@ const fakeFetchUsers = () =>
     setTimeout(() => {
       resolve([
         {
-          id: 1, nombre: 'Juan', apellido: 'Perez', edad: 30,
+          id: 1, nombre: 'Kane', apellido: 'Baltazar Alanoca', edad: 30,
           color: "gray",
           icon: DevicePhoneMobileIcon,
-          title: "Today's Money",
+          title: "Baltazar Alanoca",
           value: "$53k",
           footer: {
             color: "text-green-500",
             value: "+55%",
-            label: "than last week",
+            label: "Baltazar Alanoca",
           },
         },
         {
