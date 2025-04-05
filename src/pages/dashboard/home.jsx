@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import {
   Typography,
   Card,
@@ -26,14 +26,50 @@ import {
   ordersOverviewData,
 } from "@/data";
 import { CheckCircleIcon, ClockIcon } from "@heroicons/react/24/solid";
+import userContext from '@/context/user/userContext';
+import {
+  BanknotesIcon,
+  UserPlusIcon,
+  UsersIcon,
+  ChartBarIcon,
+} from "@heroicons/react/24/solid";
+
 
 export function Home() {
+  const { users, loading, fetchUsers, deleteUser } = useContext(userContext);
+
+  useEffect(() => {
+    console.log("useEffect ...");
+    fetchUsers();
+  }, []);
+
+  const handleDelete = (id) => {
+    deleteUser(id);
+  };
+
+  // return (
+  //   <div>
+  //     <h1>Lista de Usuarios</h1>
+  //     {loading && <p>Cargando usuarios...</p>}
+  //     <ul>
+  //       {users.map(user => (
+  //         <li key={user.id}>
+  //           {user.nombre} {user.apellido} - Edad: {user.edad}
+  //           <button onClick={() => handleDelete(user.id)}>Eliminar</button>
+  //         </li>
+  //       ))}
+  //     </ul>
+  //   </div>
+  // );
+
   return (
     <div className="mt-12">
       <div className="mb-12 grid gap-y-10 gap-x-6 md:grid-cols-2 xl:grid-cols-4">
-        {statisticsCardsData.map(({ icon, title, footer, ...rest }) => (
+        {users && console.log(users)}
+        {/* {users && console.log({...rest})} */}
+        {users.map(({ id, nombre, icon, title, footer, ...rest }) => (
           <StatisticsCard
-            key={title}
+            key={id}
             {...rest}
             title={title}
             icon={React.createElement(icon, {
@@ -41,12 +77,13 @@ export function Home() {
             })}
             footer={
               <Typography className="font-normal text-blue-gray-600">
-                <strong className={footer.color}>{footer.value}</strong>
+                <strong className={footer.color}>{nombre}</strong>
                 &nbsp;{footer.label}
               </Typography>
             }
           />
         ))}
+
       </div>
       <div className="mb-6 grid grid-cols-1 gap-y-12 gap-x-6 md:grid-cols-2 xl:grid-cols-3">
         {statisticsChartsData.map((props) => (
@@ -126,11 +163,10 @@ export function Home() {
               <tbody>
                 {projectsTableData.map(
                   ({ img, name, members, budget, completion }, key) => {
-                    const className = `py-3 px-5 ${
-                      key === projectsTableData.length - 1
-                        ? ""
-                        : "border-b border-blue-gray-50"
-                    }`;
+                    const className = `py-3 px-5 ${key === projectsTableData.length - 1
+                      ? ""
+                      : "border-b border-blue-gray-50"
+                      }`;
 
                     return (
                       <tr key={name}>
@@ -154,9 +190,8 @@ export function Home() {
                                 alt={name}
                                 size="xs"
                                 variant="circular"
-                                className={`cursor-pointer border-2 border-white ${
-                                  key === 0 ? "" : "-ml-2.5"
-                                }`}
+                                className={`cursor-pointer border-2 border-white ${key === 0 ? "" : "-ml-2.5"
+                                  }`}
                               />
                             </Tooltip>
                           ))}
@@ -219,11 +254,10 @@ export function Home() {
               ({ icon, color, title, description }, key) => (
                 <div key={title} className="flex items-start gap-4 py-3">
                   <div
-                    className={`relative p-1 after:absolute after:-bottom-6 after:left-2/4 after:w-0.5 after:-translate-x-2/4 after:bg-blue-gray-50 after:content-[''] ${
-                      key === ordersOverviewData.length - 1
-                        ? "after:h-0"
-                        : "after:h-4/6"
-                    }`}
+                    className={`relative p-1 after:absolute after:-bottom-6 after:left-2/4 after:w-0.5 after:-translate-x-2/4 after:bg-blue-gray-50 after:content-[''] ${key === ordersOverviewData.length - 1
+                      ? "after:h-0"
+                      : "after:h-4/6"
+                      }`}
                   >
                     {React.createElement(icon, {
                       className: `!w-5 !h-5 ${color}`,
@@ -253,6 +287,8 @@ export function Home() {
       </div>
     </div>
   );
+
+
 }
 
 export default Home;
