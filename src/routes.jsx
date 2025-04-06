@@ -10,7 +10,7 @@ import {
   UsersIcon,
   EnvelopeIcon
 } from "@heroicons/react/24/solid";
-import { Home, Profile, Tables, Notifications } from "@/pages/dashboard";
+import { Home, Profile, Tables, Notifications, Devices } from "@/pages/dashboard";
 import { SignIn, SignUp } from "@/pages/auth";
 
 const icon = {
@@ -30,13 +30,13 @@ export const routes = [
       {
         icon: <DevicePhoneMobileIcon {...icon} />,
         name: "Mis Dispositivos",
-        path: "/my_devices",
-        element: <Profile />,
+        path: "/devices",
+        element: <Devices />,
       },
       {
         icon: <ShieldExclamationIcon {...icon} />,
         name: "Mis Políticas",
-        path: "/my_polices",
+        path: "/polices",
         element: <Home />,
       },
       {
